@@ -8,7 +8,7 @@ external-controller: :9090
 {% if request.clash.doh == "true" %}
 dns:
   enable: true
-  ipv6: true
+  ipv6: flase
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
