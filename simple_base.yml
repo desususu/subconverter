@@ -8,15 +8,25 @@ external-controller: :9090
 {% if request.clash.doh == "true" %}
 dns:
   enable: true
+  ipv6: true
   listen: 0.0.0.0:53
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - msftconnecttest.com
+    - '*.msftconnecttest.com'
+    - msftncsi.com
+    - '*.msftncsi.com'
+    - globalhost.ptlogin2.qq.com
   nameserver:
-    - https://doh.rixcloud.dev/dns-query
-    - https://118.31.13.131/dns-query
-    - https://120.25.25.166/dns-query
-    - https://139.224.112.177/dns-query
-    - https://47.108.56.233/dns-query
-    - https://59.110.53.209/dns-query
+    - 223.5.5.5
+    - 119.29.29.29
+    - 117.50.10.10
+  fallback:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - tls://1.0.0.1:853
 {% endif %}
 {% endif %}
 
